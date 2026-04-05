@@ -27,8 +27,8 @@ public class Util {
             System.out.println("connection ok");
 
         } catch (ClassNotFoundException|SQLException  e) {
-            e.printStackTrace();
-            System.out.println("connection error");
+
+            System.err.println("connection error");
         }
         return connection;
     }
@@ -47,7 +47,6 @@ public class Util {
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
                 System.err.println("ошибка при создании SessionFactory: " + e.getMessage());
-                e.printStackTrace();
             }
         }
         return sessionFactory;
