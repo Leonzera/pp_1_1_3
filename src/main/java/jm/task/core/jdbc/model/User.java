@@ -1,21 +1,23 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
-@Table
-public class User {
+@Entity
+@Table(name = "users")
+public class User implements Serializable { // делаем ради ситуаций с Second-level cache\Кластеризация с репликацией кэша\Хранение в HttpSession с распределением
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column
+    @Column(name = "last_name",nullable = false,length = 50)
     private String lastName;
 
-    @Column
+    @Column(name = "age",nullable = false)
     private Byte age;
 
     public User() {
